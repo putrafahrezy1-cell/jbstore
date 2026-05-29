@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        .grid{
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .card{
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .card h1{
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        .card h3{
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="grid" id="container"></div>
+
+    <script>
+        const product = [
+            { nama: "Kaos", harga: 200000 },
+            { nama: "Celana", harga: 200000 },
+            { nama: "Topi", harga: 100000 },
+            { nama: "Jam Tangan", harga: 200000 },
+        ];
+
+        const barang = product.map(item => {
+            return `
+                <div class="card">
+                    <p>BARANG</p>
+                    <h1>${item.nama}</h1>
+                    <h3>Rp ${item.harga.toLocaleString('id-ID')}</h3>
+                </div>
+            `;
+        });
+
+        document.getElementById("container").innerHTML = barang.join("");
+    </script>
+
+</body>
+</html>

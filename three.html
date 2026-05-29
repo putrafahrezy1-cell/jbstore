@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="three.css" rel="stylesheet">
+</head>
+<body>
+    <h1>FORUM JB GAUL</h1>
+    <p>toko amanah bekas tapi raos</p>
+    <div class="container">
+        <div id="card-list"></div>
+        <div class="saldo" id="saldo"></div>
+    </div>
+    <script>
+        const produk = [
+            { nama: "longsleeve gaul", harga: 300000, gambar: "gaul.jpg" },
+            { nama: "hat phillipworks", harga: 300000, gambar: "pw.jpg" },
+            { nama: "tshirt vondutch", harga: 300000, gambar: "vondutch.jpg" },
+            { nama: "workshirt", harga: 200000, gambar: "ws.jpg" },
+            { nama: "rucas merecet", harga: 200000, gambar: "rucas.jpg" },
+            { nama: "hoodie rucas", harga: 200000, gambar: "rucass.jpg" },
+            { nama: "hoodie bape", harga: 200000, gambar: "bape.jpg" },
+            { nama: "crocs mcqueen", harga: 200000, gambar: "crocs.jpg" }
+        ];
+
+        let saldo = 1000000;
+
+        function formatRupiah(amount) {
+            return new Intl.NumberFormat('id-ID', {
+                style: 'currency',
+                currency: 'IDR',
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 0
+            }).format(amount);
+        }
+
+        function renderProduk() {
+            document.getElementById("card-list").innerHTML = produk.map((item, index) => {
+                return `
+                    <div class="card">
+                        <img src="${item.gambar}" alt="${item.nama}" />
+                        <div class="card-body">
+                            <h2>${item.nama}</h2>
+                            <h3>${formatRupiah(item.harga)}</h3>
+                            <button class="btn-beli" data-index="${index}">Beli</button>
+                        </div>
+                    </div>
+                `;
+            }).join("");
+
+            document.querySelectorAll(".btn-beli").forEach((button) => {
+                button.addEventListener("click", () => {
+                    const index = Number(button.getAttribute("data-index"));
+                    const harga = produk[index].harga;
+
+                    if (saldo >= harga) {
+                        saldo -= harga;
+                        document.getElementById("saldo").textContent = `Saldo: ${formatRupiah(saldo)}`;
+                        alert(`Anda membeli ${produk[index].nama} seharga ${formatRupiah(harga)}. Sisa saldo: ${formatRupiah(saldo)}`);
+                    } else {
+                        alert("Saldo tidak cukup untuk membeli produk ini.");
+                    }
+                });
+            });
+        }
+
+        document.getElementById("saldo").textContent = `Saldo: ${formatRupiah(saldo)}`;
+        renderProduk();
+    </script>
+</body>
+</html>

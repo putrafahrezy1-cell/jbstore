@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body id="body">
+
+    <button onclick="berubah()">Ubah Hijau</button>
+    <button onclick="berubah2()">Ubah Biru</button>
+    <button onclick="berubah3()">Ubah Kuning</button>
+
+    <p onmouseenter="berubah()" onmouseleave="berubah2()">
+        GANJAR MAHMUD,ANIS BASWEDAN
+    </p>
+
+    <script>
+        const body = document.getElementById('body');
+
+        function berubah() {
+            body.style.backgroundColor = "green";
+            body.style.fontSize = "50px";
+        }
+
+        function berubah2() {
+            body.style.backgroundColor = "blue";
+            body.style.fontSize = "50px";
+        }
+
+        function berubah3() {
+            body.style.backgroundColor = "yellow";
+            body.style.fontSize = "50px";
+        }
+    </script>
+
+</body>
+</html>
